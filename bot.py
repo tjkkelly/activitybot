@@ -30,16 +30,22 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+def json_to_tg_photo( jsonObj, title ):
+    img_path = json_to_image.json_2_table_png(jsonObj, format_len=21, table_title=title, txt_color="white", bg_color="black")
+    return open(img_path, 'rb')
+
 def get_latest_activity(update: Update, _: CallbackContext) -> None:
     """Returns the last activity that someone completed"""
     activites = stravaservice.getActivitesSinceDefinedTime()
     update.message.reply_text(str(activites[-1]))
 
 def get_team_duration_totals(update: Update, _: CallbackContext) -> None:
-    update.message.reply_text(stravaservice.getTeamDurationTotals())
+    json_result = stravaservice.getTeamDurationTotals()
+    update.message.reply_photo(photo=json_to_tg_photo(json_result, "Team Scores"))
 
 def get_individual_leaderboard(update: Update, _: CallbackContext) -> None:
-    update.message.reply_text(stravaservice.getLeaderboardByTotalDuration())
+    json_result = stravaservice.getLeaderboardByTotalDuration()
+    update.message.reply_photo(photo=json_to_tg_photo(json_result, "Individual Scores"))
 
 def main() -> None:
     """Start the bot."""

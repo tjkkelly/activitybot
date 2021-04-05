@@ -126,8 +126,12 @@ def getLeaderboardByTotalDuration():
         else:
             duration_by_user[activity.username] += activity.duration
     ordered_user_totals_by_duration = sorted([(k, v) for k, v in duration_by_user.items()], key=lambda x: x[1],reverse=True)
+
+    result_dict = {}
+    for user_entry in ordered_user_totals_by_duration:
+        result_dict[user_entry[0]] = user_entry[1]
     
-    return json.dumps(ordered_user_totals_by_duration,default=str,indent=4)
+    return json.dumps(result_dict,default=str,indent=4)
 
 def main():
     print(getLeaderboardByTotalDuration())
