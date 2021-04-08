@@ -5,7 +5,8 @@ WORKDIR /app
 RUN apk add --update python3 \
     python3-dev \
     py-pip \
-    build-base
+    build-base \
+    zlib-dev
 
 RUN pip3 install --upgrade pip
 
