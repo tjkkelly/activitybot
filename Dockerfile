@@ -13,6 +13,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install beautifulsoup4
 RUN pip3 install python-telegram-bot
 RUN pip3 install requests
+RUN python3 -m pip install --upgrade Pillow
 
 # copy project files
 COPY . ./
