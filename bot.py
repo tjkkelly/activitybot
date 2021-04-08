@@ -17,6 +17,7 @@ import logging
 import stravaservice
 import json
 import os
+import json_to_image
 
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
