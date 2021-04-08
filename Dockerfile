@@ -7,7 +7,8 @@ RUN apk add --update python3 \
     py-pip \
     build-base \
     jpeg-dev \
-    zlib-dev
+    zlib-dev \
+    freetype
 
 RUN pip3 install --upgrade pip
 
