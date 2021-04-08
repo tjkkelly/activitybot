@@ -1,5 +1,5 @@
 # Base image for build
-FROM python:3.7.2-alpine3.7
+FROM python:3.7.2
 WORKDIR /app
 
 RUN apk add --update python3 \
@@ -8,8 +8,7 @@ RUN apk add --update python3 \
     build-base \
     jpeg-dev \
     zlib-dev \
-    freetype \
-    libfreetype6-dev
+    freetype
 
 RUN pip3 install --upgrade pip
 
