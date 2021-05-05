@@ -46,7 +46,11 @@ def get_team_duration_totals(update: Update, _: CallbackContext) -> None:
 
 def get_individual_leaderboard(update: Update, _: CallbackContext) -> None:
     json_result = stravaservice.getLeaderboardByTotalDuration()
-    update.message.reply_photo(photo=json_to_tg_photo(json_result, "Individual Scores"))
+    update.message.reply_photo(photo=json_to_tg_photo(json_result, "Individual Total Scores"))
+
+def get_individual_leaderboard_weighted(update: Update, _: CallbackContext) -> None:
+    json_result = stravaservice.getLeaderboardByWeightedDuration()
+    update.message.reply_photo(photo=json_to_tg_photo(json_result, "Individual Weighted Scores"))
 
 def main() -> None:
     """Start the bot."""
@@ -60,6 +64,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("lastactivity", get_latest_activity))
     dispatcher.add_handler(CommandHandler("teamtotals", get_team_duration_totals))
     dispatcher.add_handler(CommandHandler("leaderboard", get_individual_leaderboard))
+    dispatcher.add_handler(CommandHandler("leaderboardweighted", get_individual_leaderboard_weighted))
 
     # Start the Bot
     updater.start_polling()
